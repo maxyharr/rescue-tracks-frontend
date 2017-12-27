@@ -1,0 +1,23 @@
+<section class="hero is-info is-bold">
+    <h2 class="subtitle has-text-centered">RescueTracks</h2>
+    <nav class="navbar">
+        <div class="navbar-menu is-active columns is-mobile level">
+            <div class="navbar-item column has-text-centered level-left">
+                <span class="level-item">{{userName}}</span>
+            </div>
+            <div class="navbar-item column has-text-centered level-right">
+                <div class="level-item">
+                    <!-- a class="button is-danger" *ngIf="isLoggedIn()" (click)="logout()">Logout</a -->
+                    <!-- a class="button is-success" *ngIf="!isLoggedIn()"  (click)="login()">Login</a -->
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>
+<section class="section">
+    <router-outlet></router-outlet>
+</section>
+<section class="section">
+    <a routerLink="/" class="button is-outlined is-info">Home</a>
+    <!-- a routerLink="add" class="button is-outlined is-info">Add a dog</a -->
+</section>

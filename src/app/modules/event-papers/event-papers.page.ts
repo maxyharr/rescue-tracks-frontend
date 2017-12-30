@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable } from "rxjs/Observable";
 
@@ -8,12 +8,11 @@ import { APIService, ShelterLuvAnimal } from "../../modules/api";
     selector: 'page-event-papers',
     templateUrl: 'event-papers.html',
 })
-export class EventPapersPage implements OnInit {
-    constructor(private api: APIService) { }
+export class EventPapersPage {
 
-    ngOnInit(): void {
-        this.api.getEventPapers().subscribe((values: ShelterLuvAnimal[]) => {
+    public animals: Observable<ShelterLuvAnimal[]>;
 
-        });
+    constructor(private api: APIService) {
+        this.animals = this.api.getEventPapers();
     }
 }

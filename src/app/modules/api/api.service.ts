@@ -17,9 +17,6 @@ export class APIService {
         return this.http
                    .get<ShelterLuvAnimal[]>(
                        `${BASE_RESCUE_TRACKS_URL}/event_papers`
-                   ).map((val: any) => {
-                       debugger;
-                       return val;
-                   });
+                   );
     }
 }

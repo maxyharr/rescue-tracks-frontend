@@ -6,7 +6,7 @@ import { CommonModule } from "@angular/common";
 
 import { HomePage } from "./pages/home/home";
 
-import { APIModule } from "./modules/api/api.module";
+import { APIModule } from "./modules/api";
 
 import { AppComponent } from "./app.component";
 

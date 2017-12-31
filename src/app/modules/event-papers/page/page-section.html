@@ -10,20 +10,6 @@
         <div class="paw"></div>
         <div class="breed">{{animal?.breed}}</div>
         <div class="paw"></div>
-        <div class="size">{{animal.age < 12 ? "Expected ": ""}}Size: {{animal.size}}</div>
-    </div>
-</div>
-
-
-<div class="page">
-    ${pageContent}
-    <div class="footer">
-        <div class="logo"><img src="/static/images/logo.jpg"></div>
-        <div class="url">www.muddypawsrescue.org</div>
-        <div class="social">
-            <i class="fa fa-facebook"></i>
-            <i class="fa fa-twitter"></i>
-            <i class="fa fa-instagram"></i>
-        </div>
+        <div class="size"><span *ngIf="animal?.age < 12">Expected&nbsp;</span>Size: {{animal.size}}</div>
     </div>
 </div>

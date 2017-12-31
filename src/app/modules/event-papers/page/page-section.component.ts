@@ -3,14 +3,11 @@ import { Component, Input } from '@angular/core';
 import { ShelterLuvAnimal } from "../../../modules/api";
 
 @Component({
-    selector: 'event-papers-page',
-    templateUrl: 'page.html',
+    selector: 'event-papers-page-section',
+    templateUrl: 'page-section.html',
 })
 export class PageComponent {
 
     @Input()
-    public leftAnimal: ShelterLuvAnimal;
-    @Input()
-    public rightAnimal: ShelterLuvAnimal;
-
+    public animal: ShelterLuvAnimal;
 }

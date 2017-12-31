@@ -1,6 +1,6 @@
 {
-  "name": "mudd-e-paws",
-  "version": "0.0.0",
+  "name": "rescue-tracks",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

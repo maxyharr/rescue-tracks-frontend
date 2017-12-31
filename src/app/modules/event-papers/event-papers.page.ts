@@ -14,5 +14,8 @@ export class EventPapersPage {
 
     constructor(private api: APIService) {
         this.animals = this.api.getEventPapers();
+        this.animals.subscribe((val: ShelterLuvAnimal[]) => {
+            // debugger;
+        });
     }
 }

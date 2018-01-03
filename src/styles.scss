@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+.animals {
+    width: 90vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+.animal-container {
+    input[type='checkbox'] {
+        display: none;
+        + label {
+            width: 100%;
+            padding: 0.5em;
+            display: block;
+        }
+        &:checked + label {
+            background-color: grey;
+        }
+
+        @media print {
+            + label {
+                display: none;
+            }
+            &:not(:checked) + event-papers-card {
+                display: none;
+            }
+        }
+    }
+}

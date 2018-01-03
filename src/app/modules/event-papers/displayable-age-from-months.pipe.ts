@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DisplayableAgeFromMonthsPipe implements PipeTransform {
     transform(ageInMonths: number): String {
-        debugger;
         ageInMonths = Number(ageInMonths);
         if(ageInMonths < 12) {
             return DisplayableAgeFromMonthsPipe.monthString(ageInMonths);

@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { HomePage } from "./pages/home/home";
 
 import { APIModule } from "./modules/api";
+import { AuthenticationModule } from "./modules/authentication";
 
 import { AppComponent } from "./app.component";
 
@@ -19,6 +20,7 @@ import { routes } from "./routes";
   ],
   imports: [
     APIModule,
+    AuthenticationModule,
     BrowserModule,
     FormsModule,
     CommonModule,

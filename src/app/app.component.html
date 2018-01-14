@@ -1,23 +1,37 @@
-<section class="hero is-info is-bold">
-    <h2 class="subtitle has-text-centered">RescueTracks</h2>
-    <nav class="navbar">
-        <div class="navbar-menu is-active columns is-mobile level">
-            <div class="navbar-item column has-text-centered level-left">
-                <span class="level-item">{{userName}}</span>
-            </div>
-            <div class="navbar-item column has-text-centered level-right">
-                <div class="level-item">
-                    <!-- a class="button is-danger" *ngIf="isLoggedIn()" (click)="logout()">Logout</a -->
-                    <!-- a class="button is-success" *ngIf="!isLoggedIn()"  (click)="login()">Login</a -->
-                </div>
+<router-outlet *ngIf="!isLoggedIn()">
+    <section class="hero" routerLinkActive #rlink="routerLinkActive" [class.is-fullheight]="!rlink.isActive">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Welcome to RescueTracks!
+                </h1>
+                <h2 class="subtitle" [hidden]="rlink.isActive">
+                    Please <a routerLink="/auth/login">login</a> or <a routerLink="/auth/register">register</a>
+                </h2>
             </div>
         </div>
-    </nav>
-</section>
-<section class="section">
-    <router-outlet></router-outlet>
-</section>
-<section class="section">
-    <a routerLink="/" class="button is-outlined is-info">Home</a>
-    <a routerLink="event-papers" class="button is-outlined is-info">Add a dog</a>
-</section>
+    </section>
+</router-outlet>
+<div *ngIf="isLoggedIn()">
+    <section class="hero is-info is-bold">
+        <h2 class="subtitle has-text-centered">RescueTracks</h2>
+        <nav class="navbar">
+            <div class="navbar-menu is-active columns is-mobile level">
+                <div class="navbar-item column has-text-centered level-left">
+                    <span class="level-item">Hello {{displayName}}!</span>
+                </div>
+                <div class="navbar-item column has-text-centered level-right">
+                    <div class="level-item">
+                        <a class="button is-danger" (click)="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <section class="section">
+        <router-outlet></router-outlet>
+    </section>
+    <section class="section">
+        <a routerLink="/events/start" class="button">Start an Event</a>
+    </section>
+</div>

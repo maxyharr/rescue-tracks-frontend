@@ -14,10 +14,6 @@ import { APIService } from "../../modules/api/api.service";
 export class HomePage implements OnInit {
     constructor(private api: APIService) { }
 
-    ngOnInit(): void {
-        this.api.getEventPapers().subscribe((values: ShelterLuvAnimal[]) => {
-
-        });
-    }
+    ngOnInit(): void {}
 
 }

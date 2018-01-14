@@ -13,9 +13,9 @@ export class EventPapersPage {
     public animals: Observable<ShelterLuvAnimal[]>;
 
     constructor(private api: APIService) {
-        this.animals = this.api.getEventPapers();
-        this.animals.subscribe((val: ShelterLuvAnimal[]) => {
-            // debugger;
-        });
+        // this.animals = this.api.getEventPapers();
+        // this.animals.subscribe((val: ShelterLuvAnimal[]) => {
+        //     // debugger;
+        // });
     }
 }

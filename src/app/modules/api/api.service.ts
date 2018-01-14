@@ -13,10 +13,10 @@ export class APIService {
 
     constructor(private http: HttpClient) {}
 
-    public getEventPapers(): Observable<ShelterLuvAnimal[]> {
+    public getRemoteAnimals(): Observable<ShelterLuvAnimal[]> {
         return this.http
                    .get<ShelterLuvAnimal[]>(
-                       `${BASE_RESCUE_TRACKS_URL}/event_papers`
+                       `${BASE_RESCUE_TRACKS_URL}/animals/remote`
                    );
     }
 }

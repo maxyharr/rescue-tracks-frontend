@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="box" style="margin-bottom: 1em;">
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-at has-text-black"></i>
+                </span>
+                <input class="input" type="email" placeholder="fido@rescuetracks.org" [(ngModel)]="email" />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-lock has-text-black"></i>
+                </span>
+                <input class="input" type="Password" placeholder="*****" [(ngModel)]="password" />
+            </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <a class="button is-link" routerLink="/auth/register">Register</a>
+            </div>
+            <div class="control">
+                <button class="button is-primary" (click)="login()">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

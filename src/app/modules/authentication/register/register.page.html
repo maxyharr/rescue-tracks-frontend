@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="box" style="margin-bottom: 1em;">
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <label class="label">First Name</label>
+                <div class="control has-icons-left">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-user has-text-black"></i>
+                    </span>
+                    <input class="input" type="text" placeholder="Lassie" [(ngModel)]="firstName" />
+                </div>
+            </div>
+            <div class="control is-expanded">
+                <label class="label">Last Name</label>
+                <div class="control has-icons-left">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-users has-text-black"></i>
+                    </span>
+                    <input class="input" type="text" placeholder="Jones" [(ngModel)]="lastName" />
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-at has-text-black"></i>
+                </span>
+                <input class="input" type="email" placeholder="fido@rescuetracks.org" [(ngModel)]="email" />
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <label class="label">Password</label>
+                <div class="control has-icons-left">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-lock has-text-black"></i>
+                    </span>
+                    <input class="input" type="password" placeholder="*****" [(ngModel)]="password" />
+                </div>
+            </div>
+            <div class="control is-expanded">
+                <label class="label">Confirm Password</label>
+                <div class="control has-icons-left">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-lock has-text-black"></i>
+                    </span>
+                    <input class="input" type="password" placeholder="*****" [(ngModel)]="confirmPassword" />
+                </div>
+            </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <button class="button is-primary" (click)="register()" [disabled]="!valid()">Register</button>
+            </div>
+        </div>
+    </div>
+</div>

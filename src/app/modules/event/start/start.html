@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="box" style="margin-bottom: 1em;">
+        <h1 class="subtitle">Setup an event</h1>
+        <div class="field">
+            <label class="label">Event date</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-calendar has-text-black"></i>
+                </span>
+                <input class="input" type="date" [(ngModel)]="date"/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Start time</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-clock-o has-text-black"></i>
+                </span>
+                <input class="input" type="time" [(ngModel)]="startTime"/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">End time</label>
+            <div class="control has-icons-left">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-clock-o has-text-black"></i>
+                </span>
+                <input class="input" type="time" [(ngModel)]="endTime"/>
+            </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <button class="button is-primary" (click)="setupEvent()">
+                    <span>Select dogs</span>
+                    <span class="icon is-small">
+                        <i class="fa fa-arrow-right"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

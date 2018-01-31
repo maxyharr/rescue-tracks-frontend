@@ -22,4 +22,8 @@ export class EventService {
                        endTime:   moment(`${date} ${endTime}`).format(),
                    });
     }
+
+    public getEvents(): Observable<EventModel[]> {
+        return this.http.get<EventModel[]>(`${BASE_RESCUE_TRACKS_URL}/events`);
+    }
 }

@@ -37,9 +37,10 @@ export class AuthenticationService {
     }
 
     public async loadDataFromToken(): Promise<{data: Object}> {
-        let payload: string[] = localStorage.getItem("userToken").match(/^.+\.(.+)\..+$/);
+        let payloadString = localStorage.getItem("userToken");
 
-        if(payload) {
+        if(payloadString) {
+            let payload: string[] = payloadString.match(/^.+\.(.+)\..+$/);
             return JSON.parse(atob(payload[1]))["data"];
         } else {
             return {data: ""};

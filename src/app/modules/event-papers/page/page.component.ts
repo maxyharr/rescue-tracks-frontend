@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ShelterLuvAnimal } from "../../../modules/api";
+import { Animal } from "../../../modules/api";
 
 @Component({
     selector: 'event-papers-page',
@@ -9,8 +9,8 @@ import { ShelterLuvAnimal } from "../../../modules/api";
 export class PageComponent {
 
     @Input()
-    public leftAnimal: ShelterLuvAnimal;
+    public leftAnimal: Animal;
     @Input()
-    public rightAnimal: ShelterLuvAnimal;
+    public rightAnimal: Animal;
 
 }

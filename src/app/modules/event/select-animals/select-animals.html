@@ -1,5 +1,9 @@
 <div class="section">
-    <div *ngFor="let animal of animals | async">
-        {{animal.name}}
-    </div>
+    <form (submit)="submitAnimals()">
+        <div *ngFor="let animal of animals | async;">
+            <input type="checkbox" name="selectedAnimals[]" id="animal_{{animal.externalId}}" [value]="animal.externalId" [checked]="selectedAnimals[animal.externalId]" (change)="toggle(animal.externalId)" />
+            <label for="animal_{{animal.externalId}}">{{animal.name}}</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </div>

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import * as _ from "lodash";
 
-import { ShelterLuvAnimal } from "../../../modules/api";
+import { Animal } from "../../../modules/api";
 
 @Component({
     selector: 'event-papers-card',
@@ -16,5 +16,5 @@ export class CardComponent {
                                         .map((x: number) => x+3);
 
     @Input()
-    public animal: ShelterLuvAnimal;
+    public animal: Animal;
 }

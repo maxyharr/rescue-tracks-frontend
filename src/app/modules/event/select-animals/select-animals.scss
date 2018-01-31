@@ -1,0 +1,24 @@
+form {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+input[type=checkbox] {
+    display: none;
+
+    + label {
+        padding: 0.5em;
+        margin: 0.25em;
+        max-width: 18ch;
+        min-width: 8ch;
+        text-align: center;
+        background: gainsboro;
+        display: inline-block;
+        border-radius: 0.25em;
+    }
+
+    &:checked + label {
+        background: green;
+        color: white;
+    }
+}

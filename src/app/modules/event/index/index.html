@@ -1,0 +1,8 @@
+<div class="events">
+    <div *ngFor="let event of events | async">
+        <a [routerLink]="[event.id, 'animals']">
+            {{ event.startTime }}
+        </a>
+        <span *ngIf="event.__animals__.length > 0">({{ event.__animals__.length }} animals)</span>
+    </div>
+</div>

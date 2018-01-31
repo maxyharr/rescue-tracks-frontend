@@ -1,4 +1,4 @@
-export class ShelterLuvAnimal {
+export class Animal {
     static readonly ADOPTED                       = "Healthy In Home";
     static readonly ADOPTED_AWAITING_FINALIZATION = "Adopted/Needs Finalization";
     static readonly AVAILABLE                     = "Available";
@@ -19,9 +19,12 @@ export class ShelterLuvAnimal {
     readonly canWalk:     boolean;
     readonly data:        {};
     readonly description: string;
+    readonly externalId:  string;
     readonly gender:      string;
+    readonly id:          number;
     readonly name:        string;
     readonly photo:       string;
     readonly size:        string;
     readonly status:      string;
+    selected:             boolean;
 }

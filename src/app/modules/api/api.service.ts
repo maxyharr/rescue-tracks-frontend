@@ -13,10 +13,11 @@ export class APIService {
 
     constructor(private http: HttpClient) {}
 
-    public getAnimalsForEvent(eventId: number): Observable<Animal[]> {
+    public getAnimalsForEvent(eventId: number, all: boolean = false): Observable<Animal[]> {
         return this.http
                    .get<Animal[]>(
-                       `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/animals`
+                       `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/animals`,
+                       { params: { all: all ? "true" : "" } }
                    );
     }
 

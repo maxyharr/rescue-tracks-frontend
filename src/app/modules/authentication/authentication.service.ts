@@ -32,6 +32,10 @@ export class AuthenticationService {
         localStorage.setItem("userToken", token.token);
     }
 
+    public getToken(): string {
+        return localStorage.getItem("userToken");
+    }
+
     public async storeTokenAndGoHome(token: {token: string}): Promise<void> {
         this.storeToken(token).then(() => this.router.navigateByUrl("/"));
     }

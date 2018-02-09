@@ -1,0 +1,17 @@
+<div class="modal is-active" *ngIf="attendee | async; let att;">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <div class="modal-card-head">
+            Start a meeting with {{att?.firstName}}?
+        </div>
+        <div class="modal-card-body">
+            Phone number: {{att?.phoneNumber}}
+        </div>
+        <footer class="modal-card-foot field is-grouped is-grouped-right">
+            <div class="control">
+                <button class="button is-large is-primary" (click)="startMeeting()">Yes</button>
+                <button class="button is-large is-danger" [routerLink]="['/events', (eventId | async)]">No</button>
+            </div>
+        </footer>
+    </div>
+</div>

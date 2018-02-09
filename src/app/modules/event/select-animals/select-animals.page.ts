@@ -27,7 +27,7 @@ export class SelectAnimalsPage implements OnInit, OnDestroy {
         this.selectedAnimals = {};
         this.paramsSub = this.route.params.subscribe(params => {
             this.eventId = +params["id"];
-            this.animals = this.apiService.getAnimalsForEvent(this.eventId);
+            this.animals = this.apiService.getAnimalsForEvent(this.eventId, true);
 
             this.animals.subscribe((animals) =>
                 _.chain(animals)
@@ -49,13 +49,16 @@ export class SelectAnimalsPage implements OnInit, OnDestroy {
         this.selectedAnimals[id] = !this.selectedAnimals[id];
     }
 
+    hasSelectedAnimals(): boolean {
+        return (_.reject(this.selectedAnimals, (val) => !val).length) > 0;
+    }
+
     submitAnimals(): void {
         this.apiService.setAnimalsInEvent(
             this.eventId,
             _.chain(this.selectedAnimals).pickBy(val => val).keys().value()
         ).subscribe(() => {
-            this.router.navigate(["events"])
-
+            this.router.navigate(["events", this.eventId])
         });
     }
 }

@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.thumbnail {
+    display: block;
+    width: 4em;
+    height: 4em;
+    background-size: cover;
+    background-position: center;
+    margin-right: 1em;
+}
+.flex-spacer {
+    flex-grow: 1;
+    display: block;
+}
+.current-meeting {
+    td:first-child {
+        padding-right: 1em;
+    }
+}

@@ -6,7 +6,7 @@ import { Animal } from "../../../modules/api";
     selector: 'event-papers-page-section',
     templateUrl: 'page-section.html',
 })
-export class PageComponent {
+export class PageSectionComponent {
 
     @Input()
     public animal: Animal;

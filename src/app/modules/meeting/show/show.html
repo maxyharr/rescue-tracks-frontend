@@ -1,0 +1,25 @@
+<div *ngIf="counselorMeeting | async; let counselorMeeting; else loading">
+    <div class="header">
+        <h2 class="title">Counselor meeting with {{counselorMeeting?.attendee.firstName}} {{counselorMeeting?.attendee.lastName[0]}}.</h2>
+        <button [routerLink]="['/events', counselorMeeting.__event__.id]" class="button is-link is-rounded">Back to event</button>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">Available animals</div>
+        <div *ngFor="let animal of counselorMeeting?.animals" class="panel-block" (click)="startMeeting(animal)">
+            <div class="thumbnail" [style.background-image]="cleanPhotoUrl(animal.photoURL)"></div>
+            {{animal?.name}}
+            <div class="flex-spacer"></div>
+            <table *ngIf="meetingForAnimal(animal); let meeting;" class="current-meeting">
+                <tr>
+                    <td><i>Adoption counselor:</i></td>
+                    <td><b>{{meeting.adoptionCounselor?.firstName}} {{meeting.adoptionCounselor?.lastName[0]}}.</b></td>
+                </tr>
+                <tr>
+                    <td><i>Potential adopter:</i></td>
+                    <td><b>{{meeting.attendee?.firstName}} {{meeting.attendee?.lastName[0]}}.</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #loading>Loading meeting...</ng-template>

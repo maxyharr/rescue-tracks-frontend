@@ -4,7 +4,8 @@ import { AuthenticationService } from "./modules/authentication/authentication.s
 
 @Component({
     selector: 'rescue-tracks-app',
-    templateUrl: 'app.component.html'
+    templateUrl: 'app.component.html',
+    styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
 

@@ -12,7 +12,7 @@
         </div>
     </section>
 </router-outlet>
-<div *ngIf="isLoggedIn()">
+<div *ngIf="isLoggedIn()" class="body">
     <section class="hero is-info is-bold">
         <h2 class="subtitle has-text-centered">RescueTracks</h2>
         <nav class="navbar">
@@ -28,10 +28,11 @@
             </div>
         </nav>
     </section>
-    <section class="section">
+    <section class="section main-container">
         <router-outlet></router-outlet>
     </section>
-    <section class="section">
-        <a routerLink="/events/start" class="button">Start an Event</a>
-    </section>
+    <footer class="footer">
+        <a routerLink="/" class="button" routerLinkActive="is-primary" [routerLinkActiveOptions]='{exact: true}'>Home</a>
+        <a routerLink="/events" class="button" routerLinkActive="is-primary">Events</a>
+    </footer>
 </div>

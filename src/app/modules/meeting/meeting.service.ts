@@ -30,10 +30,22 @@ export class MeetingService {
             );
     }
 
+    public getMeetingDetails(meetingId: number): Observable<Meeting> {
+        return this.http.get<Meeting>(
+                `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}/details`
+            );
+    }
+
     public startMeetingWithAnimal(meetingId: number, animal: Animal): Observable<Meeting> {
         return this.http.post<Meeting>(
             `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}`,
             { animal_id: animal.id }
+        );
+    }
+
+    public endCurrentMeetingWithAnimal(meetingId: number): Observable<Meeting> {
+        return this.http.post<Meeting>(
+            `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}/end`, {}
         );
     }
 }

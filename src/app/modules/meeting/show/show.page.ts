@@ -31,7 +31,7 @@ export class MeetingPage implements OnInit, OnDestroy {
         this.counselorMeeting = new ReplaySubject(1);
         this.paramsSub = this.route.params.subscribe(params => {
             this.meetingService
-                .getMeeting(+params.id)
+                .getMeetingDetails(+params.id)
                 .map((meeting) => Object.assign(new Meeting(), meeting))
                 .subscribe(this.counselorMeeting);
         });

@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { APIModule } from "../api/api.module";
 
+import { EndPage } from "./end/end.page";
 import { MeetingPage } from "./show/show.page";
 import { MeetWithPage } from "./meet-with/meet-with.page";
 
@@ -19,6 +20,7 @@ import { AuthenticationInterceptor } from "../authentication/authentication.inte
     MeetingPage,
 
     // Modals
+    EndPage,
     MeetWithPage,
 
     // Pipes

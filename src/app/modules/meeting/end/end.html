@@ -1,0 +1,14 @@
+<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card" *ngIf="meeting | async; let meeting">
+        <div class="modal-card-body">
+            End {{meeting?.attendee.firstName}}'s meeting with {{meeting?.animals[0].name}}?
+        </div>
+        <footer class="modal-card-foot field is-grouped is-grouped-right">
+            <div class="control">
+                <button class="button is-large is-primary" (click)="endMeeting()">Yes</button>
+                <button class="button is-large is-danger" [routerLink]="['/events', eventId]">No</button>
+            </div>
+        </footer>
+    </div>
+</div>

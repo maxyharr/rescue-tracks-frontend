@@ -12,6 +12,7 @@ import * as _ from "lodash";
 
 import { EventModel } from "./event.model";
 import { Attendee } from "./attendee.model";
+import { Meeting } from "../meeting/meeting.model";
 
 const BASE_RESCUE_TRACKS_URL = "http://localhost:9000";
 
@@ -62,6 +63,10 @@ export class EventService {
                 `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`,
                 { attendee }
             );
+    }
+
+    public getMeetingsAtEvent(eventId: number): Observable<Meeting[]> {
+        return this.http.get<Meeting[]>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}/meetings`);
     }
 
     public compareEventsByTime(eventA: EventModel, eventB: EventModel): number {

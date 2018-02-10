@@ -1,75 +1,69 @@
 <div class="event" *ngIf="eventModel | async; let event; else loading">
-    <h2>Event #{{ event?.id }} for {{ event.organization?.name }} ({{ event | formatEventDate }})</h2>
-    <a routerLink="animals">
-        <span *ngIf="event.animals.length > 0 ; else addAnimals">{{ event.animals.length }} animals</span>
-        <ng-template #addAnimals>Add animals</ng-template>
-    </a>
-    <div class="waitlist" *ngIf="event | eventIsActive">
-        <div class="box">
+    <div>
+        <h2 class="title">Event #{{ event?.id }}</h2>
+        <h3 class="subtitle">({{ event | formatEventDate }})</h3>
+        <a routerLink="animals">
+            <span *ngIf="event.animals.length > 0 ; else addAnimals">{{ event.animals.length }} animals</span>
+            <ng-template #addAnimals>Add animals</ng-template>
+        </a>
+        <div class="box" *ngIf="event | eventIsActive">
             <h3>Waitlist</h3>
             <div *ngFor="let attendee of waitlist | async">
                 <a [routerLink]="['meeting', attendee.id]">{{attendee.firstName}} {{attendee.lastName[0]}}.</a>
             </div>
         </div>
+    </div>
+    <div *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">
+        <h2 class="subtitle">My current meetings</h2>
+        <div class="meeting" *ngFor="let meeting of myMeetings | async">
+            <a *ngIf="meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id, 'end']">
+                {{meeting?.attendee.firstName}} &amp; {{meeting?.animals[0].name}}
+            </a>
+            <a *ngIf="!meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id]">
+                {{meeting?.attendee.firstName}} (not with animal)
+            </a>
+        </div>
+    </div>
+    <div *ngIf="event | eventIsActive">
         <form class="box" (ngSubmit)="addToWaitlist()" #waitlistForm="ngForm">
             <h3>Add person to waitlist</h3>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">First&nbsp;Name</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="text" name="firstName" [(ngModel)]="newAttendee.firstName" required />
-                        </div>
+            <div class="field">
+                <label class="label">First&nbsp;Name</label>
+                <div class="field">
+                    <div class="control">
+                        <input type="text" name="firstName" [(ngModel)]="newAttendee.firstName" required />
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Last&nbsp;Name</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="text" name="lastName" [(ngModel)]="newAttendee.lastName" required />
-                        </div>
+            <div class="field">
+                <label class="label">Last&nbsp;Name</label>
+                <div class="field">
+                    <div class="control">
+                        <input type="text" name="lastName" [(ngModel)]="newAttendee.lastName" required />
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Approved?</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="checkbox" name="approved" [(ngModel)]="newAttendee.preapproved" />
-                        </div>
+            <div class="field">
+                <label class="label">Approved?</label>
+                <div class="field">
+                    <div class="control">
+                        <input type="checkbox" name="approved" [(ngModel)]="newAttendee.preapproved" />
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Email</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="email" name="email" [(ngModel)]="newAttendee.email" required />
-                        </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="field">
+                    <div class="control">
+                        <input type="email" name="email" [(ngModel)]="newAttendee.email" required />
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Phone</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <input type="phone" name="phone" [(ngModel)]="newAttendee.phoneNumber" required />
-                        </div>
+            <div class="field">
+                <label class="label">Phone</label>
+                <div class="field">
+                    <div class="control">
+                        <input type="phone" name="phone" [(ngModel)]="newAttendee.phoneNumber" required />
                     </div>
                 </div>
             </div>

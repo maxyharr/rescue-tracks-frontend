@@ -6,7 +6,7 @@
         </div>
         <footer class="modal-card-foot field is-grouped is-grouped-right">
             <div class="control">
-                <button class="button is-large is-primary" (click)="startMeeting()">Yes</button>
+                <button class="button is-large is-primary" [disabled]="meetingStarted" (click)="startMeeting()">Yes</button>
                 <button class="button is-large is-danger" [routerLink]="['/meetings', (meetingId | async)]">No</button>
             </div>
         </footer>

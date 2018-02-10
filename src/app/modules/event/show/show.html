@@ -7,7 +7,7 @@
             <ng-template #addAnimals>Add animals</ng-template>
         </a>
         <div class="box" *ngIf="event | eventIsActive">
-            <h3>Waitlist</h3>
+            <h3 class="subtitle">Applicants</h3>
             <div *ngFor="let attendee of waitlist | async">
                 <a [routerLink]="['meeting', attendee.id]">{{attendee.firstName}} {{attendee.lastName[0]}}.</a>
             </div>

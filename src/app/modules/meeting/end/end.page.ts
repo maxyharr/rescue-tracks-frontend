@@ -17,8 +17,11 @@ export class EndPage implements OnInit, OnDestroy {
     private paramsSub: Subscription;
     public meeting: Observable<Meeting>;
     public eventId: number;
+    public meetingEnded: boolean;
 
-    constructor(private route: ActivatedRoute, private router: Router, private meetingService: MeetingService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private meetingService: MeetingService) {
+        this.meetingEnded = false;
+    }
 
     ngOnInit(): void {
         this.eventId = Number(localStorage.getItem("eventId"));
@@ -33,10 +36,12 @@ export class EndPage implements OnInit, OnDestroy {
     }
 
     endMeeting(): void {
+        this.meetingEnded = true;
         this.meeting.subscribe((meeting) =>
             this.meetingService
                 .endCurrentMeetingWithAnimal(meeting.id)
                 .subscribe(() => {
+                    this.meetingEnded = false;
                     this.router.navigate(["meetings", meeting.id]);
                 })
         );

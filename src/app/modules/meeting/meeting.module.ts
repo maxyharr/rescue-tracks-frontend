@@ -12,6 +12,9 @@ import { MeetWithPage } from "./meet-with/meet-with.page";
 import { MeetingRoutes } from "./meeting.routes";
 import { MeetingService } from "./meeting.service";
 
+import { FormatDatePipe } from "./format-date.pipe";
+
+
 import { AuthenticationInterceptor } from "../authentication/authentication.interceptor";
 
 @NgModule({
@@ -24,6 +27,7 @@ import { AuthenticationInterceptor } from "../authentication/authentication.inte
     MeetWithPage,
 
     // Pipes
+    FormatDatePipe,
   ],
   imports: [
     CommonModule,

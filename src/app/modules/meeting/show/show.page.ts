@@ -60,4 +60,19 @@ export class MeetingPage implements OnInit, OnDestroy {
             this.router.navigate(["meetings", meeting.id, "with"]);
         });
     }
+
+    endMeeting() {
+        this.counselorMeeting.switchMap((meeting) => {
+            return this.meetingService.endMeeting(meeting.id).map(result => {
+                alert(`Don't forget to return ${meeting.attendee.firstName}'s id!`);
+                return result;
+            });
+        }).subscribe((result: {success: boolean, error: string}) => {
+            if(result.success) {
+                this.router.navigate(["/events", localStorage.getItem("eventId")]);
+            } else {
+                alert(result.error);
+            }
+        });
+    }
 }

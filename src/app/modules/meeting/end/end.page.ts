@@ -18,9 +18,11 @@ export class EndPage implements OnInit, OnDestroy {
     public meeting: Observable<Meeting>;
     public eventId: number;
     public meetingEnded: boolean;
+    public adopted: boolean;
 
     constructor(private route: ActivatedRoute, private router: Router, private meetingService: MeetingService) {
         this.meetingEnded = false;
+        this.adopted = false;
     }
 
     ngOnInit(): void {
@@ -42,6 +44,19 @@ export class EndPage implements OnInit, OnDestroy {
                 .endCurrentMeetingWithAnimal(meeting.id)
                 .subscribe(() => {
                     this.meetingEnded = false;
+                    this.router.navigate(["meetings", meeting.id]);
+                })
+        );
+    }
+
+    adopt(): void {
+        this.adopted = true;
+        this.meeting.subscribe((meeting) =>
+            this.meetingService
+                .adoptFromMeeting(meeting.id)
+                .subscribe(() => {
+                    this.adopted = false;
+                    alert(`Don't forget to return ${meeting.attendee.firstName}'s id!`);
                     this.router.navigate(["meetings", meeting.id]);
                 })
         );

@@ -18,7 +18,7 @@ export class MeetingService {
         if((animal as any).__meetings__ && (animal as any).__meetings__.length) {
             let meeting = _.find((animal as any).__meetings__, (m) => !m.concludedAt);
             if(meeting.__attender__) {
-                return Object.assign(new Meeting(), meeting.__attender__);
+                return Object.assign(new Meeting(), meeting.__attender__, {startedAt: meeting.createdAt});
             }
         }
         return undefined;
@@ -45,6 +45,18 @@ export class MeetingService {
 
     public endCurrentMeetingWithAnimal(meetingId: number): Observable<Meeting> {
         return this.http.post<Meeting>(
+            `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}/end_animal_meeting`, {}
+        );
+    }
+
+    public adoptFromMeeting(meetingId: number): Observable<{success: boolean, error: string}> {
+        return this.http.post<{success: boolean, error: string}>(
+            `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}/adopt`, {}
+        );
+    }
+
+    public endMeeting(meetingId: number): Observable<{success: boolean, error: string}> {
+        return this.http.post<{success: boolean, error: string}>(
             `${BASE_RESCUE_TRACKS_URL}/meetings/${meetingId}/end`, {}
         );
     }

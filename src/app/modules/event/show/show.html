@@ -2,15 +2,19 @@
     <div>
         <h2 class="title">Event #{{ event?.id }}</h2>
         <h3 class="subtitle">({{ event | formatEventDate }})</h3>
+        <!-- <div>Test {{socketTest | async}}</div> -->
         <a routerLink="animals">
             <span *ngIf="event.animals.length > 0 ; else addAnimals">{{ event.animals.length }} animals</span>
             <ng-template #addAnimals>Add animals</ng-template>
         </a>
-        <div class="box" *ngIf="event | eventIsActive">
-            <h3 class="subtitle">Applicants</h3>
-            <div *ngFor="let attendee of waitlist | async">
-                <a [routerLink]="['meeting', attendee.id]">{{attendee.firstName}} {{attendee.lastName[0]}}.</a>
-            </div>
+        <div class="panel" *ngIf="event | eventIsActive">
+            <h3 class="panel-heading">Applicants</h3>
+            <a *ngFor="let attendee of waitlist | async"
+                [routerLink]="['meeting', attendee.id]"
+                class="panel-block attendee">
+                    {{attendee.firstName}} {{attendee.lastName[0]}}.
+                <span class="time">{{attendee.addedAt | timeAgo | async}}</span>
+            </a>
         </div>
     </div>
     <div *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">

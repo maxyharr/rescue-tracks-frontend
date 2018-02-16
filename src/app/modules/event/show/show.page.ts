@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Observable, Subscription } from "rxjs";
+import { Observable, Subscription, ReplaySubject } from "rxjs";
 import * as _ from "lodash";
+
+import * as socketIO from "socket.io-client";
 
 import { EventService } from "../event.service";
 
@@ -23,23 +25,35 @@ export class EventPage implements OnInit, OnDestroy {
 
     public newAttendee: Attendee;
 
-    public waitlist: Observable<Attendee[]>;
+    public waitlist: ReplaySubject<Attendee[]>;
 
     public myMeetings: Observable<Meeting[]>;
 
+    private socket: SocketIOClient.Socket;
+
     constructor(private route: ActivatedRoute, private eventService: EventService) {
+        this.waitlist = new ReplaySubject<Attendee[]>();
         this.newAttendee = new Attendee();
     }
 
     ngOnInit(): void {
         this.paramsSub = this.route.params.subscribe(params => {
             localStorage.setItem("eventId", +params.id + "");
+            this.eventService.getEventAttendance(+params.id).subscribe((data) => this.waitlist.next(data));
             this.eventModel = this.eventService.getEvent(+params.id);
-            this.waitlist   = this.eventService.getEventAttendance(+params.id);
             this.myMeetings = this.eventService.getMeetingsAtEvent(+params.id)
                 .map((meetings) => {
                     return _.map(meetings, (meeting) => Object.assign(new Meeting(), meeting))
                 });
+            this.socket = socketIO("http://localhost:9000/event", {
+                query: {
+                    event_id: +params.id,
+                    action: "adopters"
+                }
+            });
+            this.socket.on("adopters", (data) => {
+                this.waitlist.next(data);
+            });
         });
     }
 
@@ -52,7 +66,6 @@ export class EventPage implements OnInit, OnDestroy {
             this.eventService.addAttendee(eventModel.id, this.newAttendee)
                 .subscribe((attendee: Attendee) => {
                     this.newAttendee = new Attendee();
-                    this.waitlist    = this.eventService.getEventAttendance(eventModel.id);
                 });
         });
     }

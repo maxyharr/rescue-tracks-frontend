@@ -14,6 +14,7 @@ import { SelectAnimalsPage } from "./select-animals/select-animals.page";
 
 import { EventIsActivePipe } from "./event-is-active.pipe";
 import { FormatEventDatePipe } from "./format-event-date.pipe";
+import { TimeAgoPipe } from "./time-ago.pipe";
 
 import { EventRoutes } from "./event.routes";
 import { EventService } from "./event.service";
@@ -34,6 +35,7 @@ import { AuthenticationInterceptor } from "../authentication/authentication.inte
     // Pipes
     EventIsActivePipe,
     FormatEventDatePipe,
+    TimeAgoPipe,
   ],
   imports: [
     CommonModule,

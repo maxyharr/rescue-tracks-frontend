@@ -5,4 +5,5 @@ export class Attendee {
     preapproved: boolean;
     email: string;
     phoneNumber: string;
+    startedAt: Date;
 }

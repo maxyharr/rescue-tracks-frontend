@@ -4,3 +4,15 @@
     flex-flow: row nowrap;
     justify-content: space-between;
 }
+
+.attendee {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    .time {
+        padding-left: 1em;
+        font-size: 0.7em;
+        font-style: italic;
+    }
+}

@@ -20,11 +20,11 @@
             </div>
         </div>
     </div>
-    <div *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">
-        <h2 class="subtitle">My current meetings</h2>
-        <div class="meeting" *ngFor="let meeting of myMeetings | async">
+    <div class="panel" *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">
+        <h2 class="panel-heading">My current meetings</h2>
+        <div class="meeting panel-block" *ngFor="let meeting of myMeetings | async">
             <a *ngIf="meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id, 'end']">
-                {{meeting?.attendee.firstName}} &amp; {{meeting?.animals[0].name}}
+                {{meeting?.attendee.firstName}} &amp; {{meeting?.animals[0].name}} <i><small>{{meeting?.createdAt | timeAgo | async}}</small></i>
             </a>
             <a *ngIf="!meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id]">
                 {{meeting?.attendee.firstName}} (not with animal)

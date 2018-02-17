@@ -8,7 +8,7 @@
     </div>
     <div class="panel">
         <div class="panel-heading">Available animals</div>
-        <div *ngFor="let animal of counselorMeeting?.animals" class="panel-block" (click)="startMeeting(animal)">
+        <div *ngFor="let animal of animals | async" class="panel-block" (click)="startMeeting(animal)">
             <div class="thumbnail" [style.background-image]="cleanPhotoUrl(animal.photoURL)"></div>
             {{animal?.name}}
             <div class="flex-spacer"></div>

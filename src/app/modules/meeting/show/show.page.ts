@@ -2,8 +2,9 @@ import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 
-import { ReplaySubject, Subscription } from "rxjs";
+import { Observable, ReplaySubject, Subscription } from "rxjs";
 
+import { EventService } from "../../event/event.service";
 import { MeetingService } from "../meeting.service";
 
 import { Attendee } from "../../event";
@@ -20,16 +21,20 @@ export class MeetingPage implements OnInit, OnDestroy {
     private paramsSub: Subscription;
 
     public counselorMeeting: ReplaySubject<Meeting>;
+    public animals: Observable<Animal[]>;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private sanitizer: DomSanitizer,
-        private meetingService: MeetingService) { }
+        private meetingService: MeetingService) {
+
+        this.counselorMeeting = new ReplaySubject<Meeting>();
+    }
 
     ngOnInit(): void {
-        this.counselorMeeting = new ReplaySubject(1);
         this.paramsSub = this.route.params.subscribe(params => {
+            this.animals = this.meetingService.getEventAnimals(Number(localStorage.getItem("eventId")));
             this.meetingService
                 .getMeetingDetails(+params.id)
                 .map((meeting) => Object.assign(new Meeting(), meeting))

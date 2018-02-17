@@ -7,7 +7,7 @@
             <span *ngIf="event.animals.length > 0 ; else addAnimals">{{ event.animals.length }} animals</span>
             <ng-template #addAnimals>Add animals</ng-template>
         </a>
-        <div class="panel" *ngIf="event | eventIsActive">
+        <div class="panel applicants" *ngIf="event | eventIsActive">
             <h3 class="panel-heading">Applicants</h3>
             <a *ngFor="let attendee of waitlist | async"
                 [routerLink]="['meeting', attendee.id]"
@@ -15,6 +15,9 @@
                     {{attendee.firstName}} {{attendee.lastName[0]}}.
                 <span class="time">{{attendee.addedAt | timeAgo | async}}</span>
             </a>
+            <div class="panel-block empty" *ngIf="(waitlist | async)?.length == 0">
+                No applicants waiting!
+            </div>
         </div>
     </div>
     <div *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">

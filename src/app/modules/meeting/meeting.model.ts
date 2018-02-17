@@ -15,8 +15,8 @@ export class Meeting {
             return _.map((this as any).__event__.__animals__,
                 (a) => Object.assign(new Animal(), a)
             );
-        } else if((this as any).__meetings__ && (this as any).__meetings__.length && (this as any).__meetings__[0].__animal__) {
-            return _.map((this as any).__meetings__,
+        } else if((this as any).__animalMeetings__ && (this as any).__animalMeetings__.length && (this as any).__animalMeetings__[0].__animal__) {
+            return _.map((this as any).__animalMeetings__,
                 (meeting: {__animal__: any}) => Object.assign(new Animal(), meeting.__animal__)
             );
         } else {

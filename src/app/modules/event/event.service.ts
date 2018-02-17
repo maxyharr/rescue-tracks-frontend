@@ -5,7 +5,9 @@ import { Router } from "@angular/router";
 import * as moment from "moment";
 import "twix";
 
-import { Observable } from "rxjs";
+import * as socketIO from "socket.io-client";
+
+import { Observable, ReplaySubject } from "rxjs";
 import "rxjs/add/operator/map";
 
 import * as _ from "lodash";
@@ -13,6 +15,7 @@ import * as _ from "lodash";
 import { EventModel } from "./event.model";
 import { Attendee } from "./attendee.model";
 import { Meeting } from "../meeting/meeting.model";
+import { Animal } from "../api/animal";
 
 const BASE_RESCUE_TRACKS_URL = "http://localhost:9000";
 
@@ -43,12 +46,28 @@ export class EventService {
     }
 
     public getEventAttendance(eventId: number): Observable<Attendee[]> {
-        return this.http
-                   .get<Attendee[]>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`)
-                   .map(attendees => {
-                       localStorage.setItem("eventAttendance", JSON.stringify(attendees));
-                       return attendees;
-                   });
+        let action = "adopters";
+        let socket: SocketIOClient.Socket = socketIO(`${BASE_RESCUE_TRACKS_URL}/event`, {
+              query: {
+                  event_id: eventId,
+                  action
+              }
+          });
+
+        let attendance: ReplaySubject<Attendee[]> = new ReplaySubject<Attendee[]>(1);
+
+        let updateAttendance = (attendees: Attendee[]) => {
+          localStorage.setItem("eventAttendance", JSON.stringify(attendees));
+          attendance.next(attendees);
+        };
+
+        this.http
+            .get<Attendee[]>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`)
+            .subscribe(updateAttendance);
+
+        socket.on(action, updateAttendance);
+
+        return attendance;
     }
 
     public addAttendee(eventId: number, attendee: Attendee): Observable<Attendee> {

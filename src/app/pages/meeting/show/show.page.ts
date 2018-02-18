@@ -4,12 +4,13 @@ import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 
 import { Observable, ReplaySubject, Subscription } from "rxjs";
 
-import { EventService } from "../../event/event.service";
-import { MeetingService } from "../meeting.service";
-
-import { Attendee } from "../../event";
-import { Animal } from "../../api";
-import { Meeting } from "../meeting.model";
+import {
+    Attendee,
+    Animal,
+    Meeting,
+    EventService,
+    MeetingService
+} from "../../../modules";
 
 @Component({
     selector: "page-meeting-show",

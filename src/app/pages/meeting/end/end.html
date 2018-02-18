@@ -3,6 +3,8 @@
     <div class="modal-card" *ngIf="meeting | async; let meeting">
         <div class="modal-card-body">
             End {{meeting?.attendee.firstName}}'s meeting with {{meeting?.animals[0].name}}?
+            <br>
+            Phone: {{meeting?.attendee.phoneNumber}}
             <div *ngIf="adopted">
                 YAY!
             </div>

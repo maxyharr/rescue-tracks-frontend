@@ -1,21 +1,21 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
 
-const BASE_RESCUE_TRACKS_URL = "http://localhost:9000";
+import { BASE_RESCUE_TRACKS_URL } from "../../constants";
 
 @Injectable()
 export class AuthenticationService {
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(@Inject(BASE_RESCUE_TRACKS_URL) private baseUrl: string, private http: HttpClient, private router: Router) {}
 
     public login(email: string, password: string): Observable<Object> {
         return this.http
                    .post<Object>(
-                       `${BASE_RESCUE_TRACKS_URL}/users/login`,
+                       `${this.baseUrl}/users/login`,
                        { email, password }
                    );
     }
@@ -23,7 +23,7 @@ export class AuthenticationService {
     public register(email: string, password: string, firstName: string, lastName: string): Observable<Object> {
         return this.http
                    .post<Object>(
-                       `${BASE_RESCUE_TRACKS_URL}/users/register`,
+                       `${this.baseUrl}/users/register`,
                        { email, password, firstName, lastName }
                    );
     }

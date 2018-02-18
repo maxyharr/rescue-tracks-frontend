@@ -2,9 +2,10 @@ import { Component, Input } from "@angular/core";
 
 import { BehaviorSubject } from "rxjs";
 
-import { EventService } from "../event.service";
-
-import { EventModel } from "../event.model";
+import {
+    EventModel,
+    EventService,
+ } from "../../../modules";
 
 @Component({
     selector: "page-event-index",

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Observable } from "rxjs";
@@ -6,17 +6,17 @@ import "rxjs/add/operator/map";
 
 import { Animal } from "./animal";
 
-const BASE_RESCUE_TRACKS_URL = "http://localhost:9000";
+import { BASE_RESCUE_TRACKS_URL } from "../../constants";
 
 @Injectable()
 export class APIService {
 
-    constructor(private http: HttpClient) {}
+    constructor(@Inject(BASE_RESCUE_TRACKS_URL) private baseUrl: string, private http: HttpClient) {}
 
     public getAnimalsForEvent(eventId: number, all: boolean = false): Observable<Animal[]> {
         return this.http
                    .get<Animal[]>(
-                       `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/animals`,
+                       `${this.baseUrl}/events/${eventId}/animals`,
                        { params: { all: all ? "true" : "" } }
                    );
     }
@@ -24,7 +24,7 @@ export class APIService {
     public setAnimalsInEvent(eventId: number, animals: string[]): Observable<Object> {
         return this.http
                    .put(
-                       `${BASE_RESCUE_TRACKS_URL}/events/${eventId}`,
+                       `${this.baseUrl}/events/${eventId}`,
                        { animals }
                    )
     }

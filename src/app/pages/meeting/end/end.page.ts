@@ -3,10 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { Observable, Subscription } from "rxjs";
 
-
-import { Meeting } from "../meeting.model";
-
-import { MeetingService } from "../meeting.service";
+import { Meeting, MeetingService } from "../../../modules";
 
 @Component({
     selector: 'page-meeting-end',

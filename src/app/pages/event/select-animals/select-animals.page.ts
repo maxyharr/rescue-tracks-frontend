@@ -4,10 +4,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 import * as _ from "lodash";
 
-import { EventService } from "../event.service";
-import { APIService, Animal } from "../../api";
+import {
+    Animal,
+    EventModel,
 
-import { EventModel } from "../event.model";
+    APIService,
+    EventService,
+} from "../../../modules";
 
 @Component({
     selector: 'page-event-select-animals',

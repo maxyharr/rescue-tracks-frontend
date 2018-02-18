@@ -13,7 +13,10 @@
                 [routerLink]="['meeting', attendee.id]"
                 class="panel-block attendee">
                     {{attendee.firstName}} {{attendee.lastName[0]}}.
-                <span class="time">{{attendee.addedAt | timeAgo | async}}</span>
+                <span class="time">
+                    {{attendee.addedAt | timeAgo | async}}
+                    <div *ngIf="attendee?.preapproved">Pre-approved</div>
+                </span>
             </a>
             <div class="panel-block empty" *ngIf="(waitlist | async)?.length == 0">
                 No applicants waiting!

@@ -5,6 +5,8 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
+import { BASE_RESCUE_TRACKS_URL } from "./constants";
+
 import { HomePage } from "./pages/home/home";
 
 import { APIModule } from "./modules/api";
@@ -33,7 +35,10 @@ import { routes } from "./routes";
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
       multi: true,
-    },
+    },{
+      provide: BASE_RESCUE_TRACKS_URL,
+      useValue: "http://localhost:9000",
+    }
   ],
   bootstrap: [AppComponent],
 })

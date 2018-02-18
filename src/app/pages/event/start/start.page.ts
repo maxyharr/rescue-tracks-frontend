@@ -1,9 +1,11 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { EventService } from "../event.service";
+import {
+    EventModel,
 
-import { EventModel } from "../event.model";
+    EventService,
+} from "../../../modules";
 
 @Component({
     selector: 'page-event-start',

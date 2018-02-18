@@ -1,6 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+
+import { BASE_RESCUE_TRACKS_URL } from "../../constants";
 
 import * as moment from "moment";
 import "twix";
@@ -17,15 +19,13 @@ import { Attendee } from "./attendee.model";
 import { Meeting } from "../meeting/meeting.model";
 import { Animal } from "../api/animal";
 
-const BASE_RESCUE_TRACKS_URL = "http://localhost:9000";
-
 @Injectable()
 export class EventService {
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(@Inject(BASE_RESCUE_TRACKS_URL) private baseUrl: string, private http: HttpClient, private router: Router) {}
 
     public setupEvent(date: string, startTime: string, endTime: string): Observable<EventModel> {
         return this.http.post<EventModel>(
-                   `${BASE_RESCUE_TRACKS_URL}/events`, {
+                   `${this.baseUrl}/events`, {
                        startTime: moment(`${date} ${startTime}`).format(),
                        endTime:   moment(`${date} ${endTime}`).format(),
                    });
@@ -33,7 +33,7 @@ export class EventService {
 
     public getEvents(): Observable<EventModel[]> {
         return this.http
-                   .get<EventModel[]>(`${BASE_RESCUE_TRACKS_URL}/events`)
+                   .get<EventModel[]>(`${this.baseUrl}/events`)
                    .map((events: EventModel[]) =>
                        _.map(events, (event: EventModel) => Object.assign(new EventModel(), event))
                    );
@@ -41,13 +41,13 @@ export class EventService {
 
     public getEvent(eventId: number): Observable<EventModel> {
         return this.http
-                   .get<EventModel>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}`)
+                   .get<EventModel>(`${this.baseUrl}/events/${eventId}`)
                    .map((event: EventModel) => Object.assign(new EventModel(), event));
     }
 
     public getEventAttendance(eventId: number): Observable<Attendee[]> {
         let action = "adopters";
-        let socket: SocketIOClient.Socket = socketIO(`${BASE_RESCUE_TRACKS_URL}/event`, {
+        let socket: SocketIOClient.Socket = socketIO(`${this.baseUrl}/event`, {
               query: {
                   event_id: eventId,
                   action
@@ -62,7 +62,7 @@ export class EventService {
         };
 
         this.http
-            .get<Attendee[]>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`)
+            .get<Attendee[]>(`${this.baseUrl}/events/${eventId}/attendance`)
             .subscribe(updateAttendance);
 
         socket.on(action, updateAttendance);
@@ -72,20 +72,20 @@ export class EventService {
 
     public addAttendee(eventId: number, attendee: Attendee): Observable<Attendee> {
         return this.http.post<Attendee>(
-                `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`,
+                `${this.baseUrl}/events/${eventId}/attendance`,
                 { attendee }
             );
     }
 
     public startMeeting(eventId: number, attendee: Attendee): Observable<{id: number}> {
         return this.http.put<{id: number}>(
-                `${BASE_RESCUE_TRACKS_URL}/events/${eventId}/attendance`,
+                `${this.baseUrl}/events/${eventId}/attendance`,
                 { attendee }
             );
     }
 
     public getMeetingsAtEvent(eventId: number): Observable<Meeting[]> {
-        return this.http.get<Meeting[]>(`${BASE_RESCUE_TRACKS_URL}/events/${eventId}/meetings`);
+        return this.http.get<Meeting[]>(`${this.baseUrl}/events/${eventId}/meetings`);
     }
 
     public compareEventsByTime(eventA: EventModel, eventB: EventModel): number {

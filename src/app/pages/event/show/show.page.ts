@@ -7,11 +7,13 @@ import * as _ from "lodash";
 import * as moment from "moment";
 import "twix";
 
-import { EventService } from "../event.service";
+import {
+    Attendee,
+    EventModel,
+    Meeting,
 
-import { EventModel } from "../event.model";
-import { Attendee } from "../attendee.model";
-import { Meeting } from "../../meeting/meeting.model";
+    EventService,
+} from "../../../modules";
 
 @Component({
     selector: "page-event-show",

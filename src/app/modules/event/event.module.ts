@@ -6,32 +6,16 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { APIModule } from "../api/api.module";
 import { MeetingModule } from "../meeting/meeting.module";
 
-import { EventIndexPage } from "./index/index.page";
-import { EventPage } from "./show/show.page";
-import { StartEventPage } from "./start/start.page";
-import { StartMeetingPage } from "./start-meeting/start-meeting.page";
-import { SelectAnimalsPage } from "./select-animals/select-animals.page";
-
 import { EventIsActivePipe } from "./event-is-active.pipe";
 import { FormatEventDatePipe } from "./format-event-date.pipe";
 import { TimeAgoPipe } from "./time-ago.pipe";
 
-import { EventRoutes } from "./event.routes";
 import { EventService } from "./event.service";
 
 import { AuthenticationInterceptor } from "../authentication/authentication.interceptor";
 
 @NgModule({
   declarations: [
-    // Pages
-    EventIndexPage,
-    EventPage,
-    SelectAnimalsPage,
-    StartEventPage,
-    StartMeetingPage,
-
-    // Modals
-
     // Pipes
     EventIsActivePipe,
     FormatEventDatePipe,
@@ -42,8 +26,11 @@ import { AuthenticationInterceptor } from "../authentication/authentication.inte
     FormsModule,
 
     APIModule,
-
-    EventRoutes,
+  ],
+  exports: [
+    EventIsActivePipe,
+    FormatEventDatePipe,
+    TimeAgoPipe,
   ],
   providers: [
     EventService,

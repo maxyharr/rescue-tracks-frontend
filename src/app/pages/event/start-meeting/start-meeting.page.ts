@@ -5,8 +5,11 @@ import { Observable, Subscription } from "rxjs";
 
 import * as _ from "lodash";
 
-import { Attendee } from "../attendee.model";
-import { EventService } from "../event.service";
+import {
+    Attendee,
+
+    EventService,
+} from "../../../modules";
 
 @Component({
     selector: 'page-event-start-meeting',

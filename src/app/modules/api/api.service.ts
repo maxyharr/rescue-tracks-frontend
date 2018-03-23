@@ -6,17 +6,15 @@ import "rxjs/add/operator/map";
 
 import { Animal } from "./animal";
 
-import { BASE_RESCUE_TRACKS_URL } from "../../constants";
-
 @Injectable()
 export class APIService {
 
-    constructor(@Inject(BASE_RESCUE_TRACKS_URL) private baseUrl: string, private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
     public getAnimalsForEvent(eventId: number, all: boolean = false): Observable<Animal[]> {
         return this.http
                    .get<Animal[]>(
-                       `${this.baseUrl}/events/${eventId}/animals`,
+                       `events/${eventId}/animals`,
                        { params: { all: all ? "true" : "" } }
                    );
     }
@@ -24,7 +22,7 @@ export class APIService {
     public setAnimalsInEvent(eventId: number, animals: string[]): Observable<Object> {
         return this.http
                    .put(
-                       `${this.baseUrl}/events/${eventId}`,
+                       `events/${eventId}`,
                        { animals }
                    )
     }

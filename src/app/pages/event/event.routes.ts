@@ -13,6 +13,7 @@ const routes: Routes = [
     {path: ":id/meeting/:attendeeId", component: StartMeetingPage},
     {path: ":id/animals", component: SelectAnimalsPage},
     {path: ":id", component: EventPage},
+    {path: "**", redirectTo: ""},
 ];
 
 export const EventRoutes: ModuleWithProviders = RouterModule.forChild(routes);

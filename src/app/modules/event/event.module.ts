@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { APIModule } from "../api/api.module";
+import { APIInterceptor } from "../api/api.interceptor";
 import { MeetingModule } from "../meeting/meeting.module";
 
 import { EventIsActivePipe } from "./event-is-active.pipe";
@@ -37,6 +38,11 @@ import { AuthenticationInterceptor } from "../authentication/authentication.inte
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
       multi: true,
     },
   ],

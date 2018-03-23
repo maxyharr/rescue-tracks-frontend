@@ -9,13 +9,13 @@
         </a>
         <div class="panel applicants" *ngIf="event | eventIsActive">
             <h3 class="panel-heading">Applicants</h3>
-            <a *ngFor="let attendee of waitlist | async"
-                [routerLink]="['meeting', attendee.id]"
+            <a *ngFor="let attendance of waitlist | async"
+                [routerLink]="['meeting', attendance.id]"
                 class="panel-block attendee">
-                    {{attendee.firstName}} {{attendee.lastName[0]}}.
+                    {{attendance.__adopter__.firstName}} {{attendance.__adopter__.lastName[0]}}.
                 <span class="time">
-                    {{attendee.addedAt | timeAgo | async}}
-                    <div *ngIf="attendee?.preapproved">Pre-approved</div>
+                    {{attendance.createdAt | timeAgo | async}}
+                    <div *ngIf="attendance?.__adopter__.preapproved">Pre-approved</div>
                 </span>
             </a>
             <div class="panel-block empty" *ngIf="(waitlist | async)?.length == 0">
@@ -26,10 +26,10 @@
     <div class="panel" *ngIf="(event | eventIsActive) && (myMeetings | async)?.length > 0">
         <h2 class="panel-heading">My current meetings</h2>
         <div class="meeting panel-block" *ngFor="let meeting of myMeetings | async">
-            <a *ngIf="meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id, 'end']">
-                {{meeting?.attendee.firstName}} &amp; {{meeting?.animals[0].name}} <i><small>{{meeting?.createdAt | timeAgo | async}}</small></i>
+            <a *ngIf="meeting?.activeAnimalMeeting" [routerLink]="['/meetings', meeting?.id, 'end']">
+                {{meeting?.attendee.firstName}} &amp; {{meeting?.activeAnimalMeeting.animal.name}} <i><small>{{meeting?.activeAnimalMeeting.startedAt | timeAgo | async}}</small></i>
             </a>
-            <a *ngIf="!meeting?.animals[0]" [routerLink]="['/meetings', meeting?.id]">
+            <a *ngIf="!meeting?.activeAnimalMeeting" [routerLink]="['/meetings', meeting?.id]">
                 {{meeting?.attendee.firstName}} (not with animal)
             </a>
         </div>

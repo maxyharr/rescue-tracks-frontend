@@ -2,20 +2,22 @@ import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import * as _ from "lodash";
+
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
 
-import { BASE_RESCUE_TRACKS_URL } from "../../constants";
+import { Organization } from "../../pages/organization/organization.model";
 
 @Injectable()
 export class AuthenticationService {
 
-    constructor(@Inject(BASE_RESCUE_TRACKS_URL) private baseUrl: string, private http: HttpClient, private router: Router) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     public login(email: string, password: string): Observable<Object> {
         return this.http
                    .post<Object>(
-                       `${this.baseUrl}/users/login`,
+                       `users/login`,
                        { email, password }
                    );
     }
@@ -23,24 +25,30 @@ export class AuthenticationService {
     public register(email: string, password: string, firstName: string, lastName: string): Observable<Object> {
         return this.http
                    .post<Object>(
-                       `${this.baseUrl}/users/register`,
+                       `users/register`,
                        { email, password, firstName, lastName }
                    );
     }
 
-    public async storeToken(token: {token: string}): Promise<void> {
-        localStorage.setItem("userToken", token.token);
+    public async storeToken(token: string): Promise<void> {
+        localStorage.setItem("userToken", token);
     }
 
     public getToken(): string {
         return localStorage.getItem("userToken");
     }
 
-    public async storeTokenAndGoHome(token: {token: string}): Promise<void> {
-        this.storeToken(token).then(() => this.router.navigateByUrl("/"));
+    public async handleLogin(): Promise<void> {
+        let token = this.loadDataFromToken();
+
+        if(!token["currentOrganization"]) {
+            this.router.navigateByUrl("/organization/join");
+        } else {
+            this.router.navigateByUrl("/");
+        }
     }
 
-    public async loadDataFromToken(): Promise<{data: Object}> {
+    public loadDataFromToken(): any {
         let payloadString = localStorage.getItem("userToken");
 
         if(payloadString) {
@@ -51,8 +59,8 @@ export class AuthenticationService {
         }
     }
 
-    public async displayableUserName(): Promise<string> {
-        let data = await this.loadDataFromToken();
+    public displayableUserName(): string {
+        let data = this.loadDataFromToken();
         let display: string;
 
         if(data["firstName"]) {
@@ -65,6 +73,11 @@ export class AuthenticationService {
         }
 
         return display;
+    }
+
+    public currentOrganization(): Organization {
+        let data = this.loadDataFromToken();
+        return _.get<Organization>(data, "currentOrganization");
     }
 
     public async logout(): Promise<void> {

@@ -29,7 +29,7 @@ export class MeetingService {
     public getMeeting(meetingId: number): Observable<Meeting> {
         return this.http.get<Meeting>(
                 `${this.baseUrl}/meetings/${meetingId}`
-            );
+            ).map((meeting) => Object.assign(new Meeting(), meeting));
     }
 
     public getEventAnimals(eventId: number): Observable<Animal[]> {

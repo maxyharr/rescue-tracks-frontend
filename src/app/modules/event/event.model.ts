@@ -1,14 +1,17 @@
+import * as _ from "lodash";
+
+import { AbstractModel } from "../../abstract.model";
+
 import { Animal } from "../api";
 
-export class EventModel {
-    public id: number;
+export class EventModel extends AbstractModel {
     public startTime: Date;
     public endTime: Date;
-    public __animals__: Animal[];
-    public __organization__: {name: string};
+    public animals: Animal[];
+    private __organization__: {name: string};
 
-    get animals(): Animal[] {
-        return this.__animals__;
+    set _animals(animals: Animal[]) {
+        this.addArray("animals", Animal, animals);
     }
 
     get organization(): {name: string} {

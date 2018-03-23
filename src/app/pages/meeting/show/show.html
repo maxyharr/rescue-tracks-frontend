@@ -6,7 +6,7 @@
         </div>
         <div>
             <button class="button is-warning is-rounded" (click)="endMeeting()">End meeting</button>
-            <button [routerLink]="['/events', counselorMeeting.__event__.id]" class="button is-link is-rounded">Back to event</button>
+            <button [routerLink]="['/events', counselorMeeting.event.id]" class="button is-link is-rounded">Back to event</button>
         </div>
     </div>
     <div class="panel">
@@ -38,6 +38,10 @@
                 <tr *ngIf="meeting.concludedAt">
                     <td><i>At:</i></td>
                     <td><b>{{meeting.concludedAt | dateOrTime}}</b></td>
+                </tr>
+                <tr *ngIf="meeting.concludedAt">
+                    <td><i>AC:</i></td>
+                    <td><b>{{meeting.adoptionCounselor?.firstName}} {{meeting.adoptionCounselor?.lastName[0]}}.</b></td>
                 </tr>
             </table>
         </div>

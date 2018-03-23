@@ -27,7 +27,7 @@ export class RegisterPage {
     public register() {
         this.authenticationService
             .register(this.email, this.password, this.firstName, this.lastName)
-            .subscribe((token: {token: string}) => this.authenticationService.storeTokenAndGoHome(token) );
+            .subscribe(() => this.authenticationService.handleLogin() );
     }
 
     public valid(): boolean {

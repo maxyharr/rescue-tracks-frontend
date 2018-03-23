@@ -1,4 +1,5 @@
-export class Animal {
+import { AbstractModel } from "../../abstract.model";
+export class Animal extends AbstractModel {
     static readonly ADOPTED                       = "Healthy In Home";
     static readonly ADOPTED_AWAITING_FINALIZATION = "Adopted/Needs Finalization";
     static readonly AVAILABLE                     = "Available";

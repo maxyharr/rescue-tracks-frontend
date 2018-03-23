@@ -5,15 +5,18 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { BASE_RESCUE_TRACKS_URL } from "./constants";
-
 import { HomePage } from "./pages/home/home";
 
 import { APIModule } from "./modules/api";
+import { APIInterceptor } from "./modules/api/api.interceptor";
 import { AuthenticationModule } from "./modules/authentication";
 import { AuthenticationInterceptor } from "./modules/authentication/authentication.interceptor";
 
 import { AppComponent } from "./app.component";
+
+import { ModalModule } from "./modules/components/modal";
+
+import { TestModalComponent } from "./pages/event/modals/test.component";
 
 import { routes } from "./routes";
 
@@ -21,6 +24,7 @@ import { routes } from "./routes";
   declarations: [
     AppComponent,
     HomePage,
+    TestModalComponent,
   ],
   imports: [
     APIModule,
@@ -28,6 +32,9 @@ import { routes } from "./routes";
     BrowserModule,
     FormsModule,
     CommonModule,
+
+    ModalModule,
+
     RouterModule.forRoot(routes),
   ],
   providers: [
@@ -36,9 +43,11 @@ import { routes } from "./routes";
       useClass: AuthenticationInterceptor,
       multi: true,
     },{
-      provide: BASE_RESCUE_TRACKS_URL,
-      useValue: "http://localhost:9000",
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true,
     }
+
   ],
   bootstrap: [AppComponent],
 })

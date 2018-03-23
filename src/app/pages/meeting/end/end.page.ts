@@ -25,8 +25,7 @@ export class EndPage implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.eventId = Number(localStorage.getItem("eventId"));
         this.paramsSub = this.route.params.subscribe(params => {
-            this.meeting = this.meetingService.getMeeting(+params.id)
-                .map((meeting) => Object.assign(new Meeting(), meeting));
+            this.meeting = this.meetingService.getMeeting(+params.id);
         });
     }
 

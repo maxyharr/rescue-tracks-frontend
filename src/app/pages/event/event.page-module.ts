@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
+import { ModalModule } from "../../modules/components/modal/modal.module";
+
 import {
   EventRoutes,
 
@@ -12,6 +14,8 @@ import {
   StartMeetingPage,
 } from ".";
 
+import { TestModalComponent } from "./modals/test.component";
+
 import { EventModule } from "../../modules";
 
 @NgModule({
@@ -21,10 +25,13 @@ import { EventModule } from "../../modules";
     SelectAnimalsPage,
     StartEventPage,
     StartMeetingPage,
+    // TestModalComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+
+    ModalModule,
 
     EventModule,
 

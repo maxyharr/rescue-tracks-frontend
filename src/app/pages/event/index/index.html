@@ -1,4 +1,5 @@
 <a routerLink="/events/start" class="button">Start an Event</a>
+<a [routerLink]="['', {outlets: {modal: 'test'}}]">Test</a>
 <div class="events">
     <div *ngFor="let event of events | async" class="event">
         <a [routerLink]="[event.id]" class="button is-small">

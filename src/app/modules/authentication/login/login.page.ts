@@ -24,7 +24,7 @@ export class LoginPage {
         this.authenticationService
             .login(this.email, this.password)
             .subscribe(
-                (token: {token: string}) => this.authenticationService.storeTokenAndGoHome(token),
+                () => this.authenticationService.handleLogin(),
                 (error: any) => {
                     this.errors = Observable.of(error.error.message);
                 }

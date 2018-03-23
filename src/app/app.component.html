@@ -13,26 +13,38 @@
     </section>
 </router-outlet>
 <div *ngIf="isLoggedIn()" class="body">
-    <section class="hero is-info is-bold">
-        <h2 class="subtitle has-text-centered">RescueTracks</h2>
-        <nav class="navbar">
-            <div class="navbar-menu is-active columns is-mobile level">
-                <div class="navbar-item column has-text-centered level-left">
-                    <span class="level-item">Hello {{displayName}}!</span>
+    <nav class="navbar is-light">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1 class="title navbar-item" routerLink="/">
+                    RescueTracks
+                </h1>
+            </div>
+            <div class="navbar-menu is-active is-mobile">
+                <div class="navbar-start">
+                    <div class="navbar-item is-tab" routerLink="/events/" routerLinkActive="is-active">
+                        Events
+                    </div>
+                    <div *ngIf="!currentOrganization" class="navbar-item is-tab" routerLink="/organization/join" routerLinkActive="is-active">
+                        Organization
+                    </div>
+                    <div *ngIf="currentOrganization" class="navbar-item is-tab" routerLink="/organization" routerLinkActive="is-active">
+                        {{currentOrganization.name}}
+                    </div>
                 </div>
-                <div class="navbar-item column has-text-centered level-right">
-                    <div class="level-item">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        {{displayName}}
+                    </div>
+                    <div class="navbar-item">
                         <a class="button is-danger" (click)="logout()">Logout</a>
                     </div>
                 </div>
             </div>
-        </nav>
-    </section>
+        </div>
+    </nav>
     <section class="section main-container">
         <router-outlet></router-outlet>
     </section>
-    <footer class="footer">
-        <a routerLink="/" class="button" routerLinkActive="is-primary" [routerLinkActiveOptions]='{exact: true}'>Home</a>
-        <a routerLink="/events" class="button" routerLinkActive="is-primary">Events</a>
-    </footer>
 </div>
+<router-outlet name="modal"></router-outlet>

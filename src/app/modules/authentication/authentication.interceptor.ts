@@ -1,7 +1,8 @@
 import { Injectable, Injector } from "@angular/core";
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpHeaderResponse } from "@angular/common/http";
 
 import { Observable } from "rxjs";
+import "rxjs/add/operator/switchMap";
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -20,6 +21,16 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             });
         }
 
-        return next.handle(request);
+        return next.handle(request)
+               .switchMap((event: HttpEvent<any>) => {
+                   if(event instanceof HttpResponse && event.headers.get("X-JWT".toLowerCase())) {
+                       return Observable.fromPromise(
+                           auth.storeToken(event.headers.get("X-JWT".toLowerCase()))
+                               .then(() => event)
+                           );
+                   } else {
+                       return Observable.of(event);
+                   }
+               });
     }
 }

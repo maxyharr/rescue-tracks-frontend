@@ -57,15 +57,38 @@
                     </div>
                 </div>
                 <div class="field is-grouped is-grouped-right">
-                    <button type="submit" class="button is-primary is-large">Create</button>
+                    <button type="submit" class="button is-primary is-outlined">Update</button>
                 </div>
             </form>
         </div>
+
+        <div class="panel events">
+            <div class="panel-heading">
+                Events
+                <button routerLink="/events/start" class="button is-primary">Add event</button>
+            </div>
+            <a *ngFor="let event of events;" class="panel-block" [routerLink]="['/events', event.id]" [class.is-active]="event | eventIsActive">
+                {{ event | formatEventDate }}
+                <span class="has-text-info">{{event.animalCount}} animals</span>
+            </a>
+            <a *ngIf="events?.length == 0" class="panel-block" routerLink="/events/start">
+                <i>No events. Tap here to setup your first one!</i>
+            </a>
+        </div>
     </div>
-    <div *ngIf="hasAnyMembers()" class="column">
+    <div class="column">
         <div class="panel">
             <div class="panel-heading">
                 Members
+                <i *ngIf="(activePanel | async) == 'active'">
+                    Tap name for options
+                </i>
+                <i *ngIf="(activePanel | async) == 'pending'">
+                    Tap name to activate
+                </i>
+                <i *ngIf="(activePanel | async) == 'inactive'">
+                    Tap name to re-activate
+                </i>
             </div>
             <div class="panel-tabs">
                 <a (click)="activePanel.next('active')" [class.is-active]="(activePanel | async) == 'active'">
@@ -81,7 +104,7 @@
                     <span class="tag is-light is-rounded">{{statusCounts.inactive}}</span>
                 </a>
             </div>
-            <div *ngFor="let membership of memberships[(activePanel | async)];" class="panel-block member">
+            <div *ngFor="let membership of memberships[(activePanel | async)];" class="panel-block member" (click)="actionForMembership(membership)">
                 <span>
                     {{membership.user.nameLastFirst}}
                 </span>

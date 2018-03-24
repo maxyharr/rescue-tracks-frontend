@@ -32,9 +32,9 @@ export class EventService {
     public getEvents(): Observable<EventModel[]> {
         return this.http
                    .get<EventModel[]>(`events`)
-                   .map((events: EventModel[]) =>
-                      _.map(events, (event: EventModel) => new EventModel(event))
-                   );
+                   .map((events: EventModel[]) => {
+                      return _.map(events, (event: EventModel) => new EventModel(event))
+                   });
     }
 
     public getEvent(eventId: number): Observable<EventModel> {

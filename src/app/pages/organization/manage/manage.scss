@@ -1,3 +1,31 @@
-.panel-block.member {
+.card + .panel {
+    margin-top: 2em;
+}
+
+.panel-heading {
+    display: flex;
+    flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
+
+    i {
+        font-size: 0.6em;
+    }
+}
+.panel-block {
+    justify-content: space-between;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(#00d1b2, 0.1);;
+    }
+
+    100% {
+        background-color: rgba(#00d1b2, 0.35);
+    }
+}
+
+.events .panel-block.is-active {
+    animation: pulse 3s ease-in alternate infinite;
 }

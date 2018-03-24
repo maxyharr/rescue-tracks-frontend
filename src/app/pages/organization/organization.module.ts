@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { APIModule, APIInterceptor } from "../../modules/api";
 import { AuthenticationInterceptor } from "../../modules/authentication/authentication.interceptor";
+import { EventModule } from "../../modules/event/event.module";
 
 import { OrganizationService } from "./organization.service";
 
@@ -15,6 +16,7 @@ import { OrganizationService } from "./organization.service";
     FormsModule,
 
     APIModule,
+    EventModule,
   ],
   exports: [],
   providers: [

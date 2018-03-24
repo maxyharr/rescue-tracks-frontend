@@ -45,4 +45,14 @@ export class OrganizationService {
 
         return this.http.get<Membership[]>(`organizations/${organization.id}/members`, {params});
     }
+
+    public activateMembership(organization: Organization, membership: Membership): Observable<Membership> {
+        if (membership.status == "active") {
+            throw "Cannot activate membership: already active";
+        }
+        debugger;
+        return this.http.put<Membership>(`memberships/${membership.id}`, {
+            status: "active",
+        });
+    }
 }

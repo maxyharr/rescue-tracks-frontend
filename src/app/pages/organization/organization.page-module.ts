@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
+import { EventModule } from "../../modules/event/event.module";
+
 import { OrganizationModule } from "./organization.module";
 
 import {
@@ -22,6 +24,7 @@ import { OrganizationRoutes } from "./organization.routes";
     CommonModule,
     FormsModule,
 
+    EventModule,
     OrganizationModule,
 
     OrganizationRoutes,

@@ -1,6 +1,8 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
+import * as _ from "lodash";
+
 import { EventIndexPage } from "./index/index.page";
 import { StartEventPage } from "./start/start.page";
 import { StartMeetingPage } from "./start-meeting/start-meeting.page";

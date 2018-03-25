@@ -1,10 +1,8 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { TestModalComponent } from "./test.component";
+import { JoinEventModalComponent } from "./join.modal";
 
-const routes: Routes = [
-    {path: "test", component: TestModalComponent, outlet: "modal"},
+export const EventModalComponentRoutes: Routes = [
+    {path: "join-event/:id", component: JoinEventModalComponent, outlet: "modal"},
 ];
-
-export const TestModalComponentRoutes: ModuleWithProviders = RouterModule.forChild(routes);

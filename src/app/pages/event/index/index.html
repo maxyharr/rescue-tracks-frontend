@@ -1,10 +1,8 @@
-<a routerLink="/events/start" class="button">Start an Event</a>
-<a [routerLink]="['', {outlets: {modal: 'test'}}]">Test</a>
 <div class="events">
     <div *ngFor="let event of events | async" class="event">
-        <a [routerLink]="[event.id]" class="button is-small">
+        <a [routerLink]="['', {outlets: {modal: ['join-event', event.id]}}]" class="button is-small">
             {{ event | formatEventDate }}
         </a>
-        <span *ngIf="event.animals.length > 0">({{ event.animals.length }} animals)</span>
+        <span>({{ event.animalCount}} animals)</span>
     </div>
 </div>

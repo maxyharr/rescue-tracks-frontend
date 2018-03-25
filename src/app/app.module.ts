@@ -16,39 +16,36 @@ import { AppComponent } from "./app.component";
 
 import { ModalModule } from "./modules/components/modal";
 
-import { TestModalComponent } from "./pages/event/modals/test.component";
-
 import { routes } from "./routes";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePage,
-    TestModalComponent,
-  ],
-  imports: [
-    APIModule,
-    AuthenticationModule,
-    BrowserModule,
-    FormsModule,
-    CommonModule,
+    declarations: [
+        AppComponent,
+        HomePage,
+    ],
+    imports: [
+        APIModule,
+        AuthenticationModule,
+        BrowserModule,
+        FormsModule,
+        CommonModule,
 
-    ModalModule,
+        ModalModule,
 
-    RouterModule.forRoot(routes),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthenticationInterceptor,
-      multi: true,
-    },{
-      provide: HTTP_INTERCEPTORS,
-      useClass: APIInterceptor,
-      multi: true,
-    }
+        RouterModule.forRoot(routes),
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor,
+            multi: true,
+        },{
+            provide: HTTP_INTERCEPTORS,
+            useClass: APIInterceptor,
+            multi: true,
+        }
 
-  ],
-  bootstrap: [AppComponent],
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -29,9 +29,14 @@ export class EventService {
                    });
     }
 
-    public getEvents(): Observable<EventModel[]> {
+    public getEvents(active?: boolean): Observable<EventModel[]> {
+        let params: {active?: string} = {};
+
+        if (active) {
+            params.active = "true";
+        }
         return this.http
-                   .get<EventModel[]>(`events`)
+                   .get<EventModel[]>(`events`, {params})
                    .map((events: EventModel[]) => {
                       return _.map(events, (event: EventModel) => new EventModel(event))
                    });
@@ -41,6 +46,10 @@ export class EventService {
         return this.http
                    .get<EventModel>(`events/${eventId}`)
                    .map((event: EventModel) => new EventModel(event));
+    }
+
+    public joinEvent(eventId: number): Observable<{success: boolean, eventId: number}> {
+        return Observable.of({success: true, eventId: 3});
     }
 
     public getEventAttendance(eventId: number): Observable<Attendee[]> {

@@ -18,7 +18,7 @@ export class EventIndexPage {
 
     constructor(private eventService: EventService) {
         this.events = new BehaviorSubject<EventModel[]>([]);
-        eventService.getEvents().subscribe((events: EventModel[]) => {
+        eventService.getEvents(true).subscribe((events: EventModel[]) => {
             this.events.next(events.sort(eventService.compareEventsByTime));
         });
     }

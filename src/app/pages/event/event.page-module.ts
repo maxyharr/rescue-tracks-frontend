@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { ModalModule } from "../../modules/components/modal/modal.module";
+import { ModalModule } from "../../modules/components/modal";
 
 import {
   EventRoutes,
@@ -14,7 +14,7 @@ import {
   StartMeetingPage,
 } from ".";
 
-import { TestModalComponent } from "./modals/test.component";
+import { JoinEventModalComponent } from "./modals/join.modal";
 
 import { EventModule } from "../../modules";
 
@@ -25,7 +25,8 @@ import { EventModule } from "../../modules";
     SelectAnimalsPage,
     StartEventPage,
     StartMeetingPage,
-    // TestModalComponent,
+
+    JoinEventModalComponent,
   ],
   imports: [
     CommonModule,

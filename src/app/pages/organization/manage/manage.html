@@ -7,6 +7,9 @@
                 </div>
             </div>
             <form class="card-content" *ngIf="organization">
+                <div>
+                    {{organization.owner.name}}
+                </div>
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">Name</label>

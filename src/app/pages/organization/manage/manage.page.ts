@@ -47,7 +47,6 @@ export class ManagePage implements OnInit {
         } else {
             this.organizationService.getOrganization(this.authenticationService.currentOrganization().id)
                 .subscribe((organization) => {
-                    debugger;
                     this.organization = new Organization(organization);
 
                     this.organizationService

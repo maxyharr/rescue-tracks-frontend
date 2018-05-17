@@ -10,6 +10,7 @@ export class Organization extends AbstractModel {
     public name: string;
     public events: EventModel[];
     public members: User[];
+    public owner: User;
     public address: Address;
 
     set _address(address: Address) {
@@ -20,4 +21,7 @@ export class Organization extends AbstractModel {
         this.addArray("events", EventModel, events);
     }
 
+    set _owner(owner: User) {
+        this.add("owner", User, owner);
+    }
 }

@@ -1,0 +1,216 @@
+<div class="columns">
+    <div class="column is-narrow">
+        <div class="panel">
+            <div class="panel-heading">
+                Members
+                <i *ngIf="(activePanel | async) == 'active'">
+                    Tap name for options
+                </i>
+                <i *ngIf="(activePanel | async) == 'pending'">
+                    Tap name to activate
+                </i>
+                <i *ngIf="(activePanel | async) == 'inactive'">
+                    Tap name to re-activate
+                </i>
+            </div>
+            <div class="panel-tabs">
+                <a (click)="activePanel.next('active')" [class.is-active]="(activePanel | async) == 'active'">
+                    Active
+                    <span class="tag is-primary is-rounded">{{statusCounts.active}}</span>
+                </a>
+                <a (click)="activePanel.next('pending')" [class.is-active]="(activePanel | async) == 'pending'">
+                    Pending
+                    <span class="tag is-info is-rounded">{{statusCounts.pending}}</span>
+                </a>
+                <a (click)="activePanel.next('inactive')" [class.is-active]="(activePanel | async) == 'inactive'">
+                    Inactive
+                    <span class="tag is-light is-rounded">{{statusCounts.inactive}}</span>
+                </a>
+            </div>
+            <div *ngFor="let membership of memberships[(activePanel | async)];" class="panel-block member" (click)="actionForMembership(membership)">
+                <span>
+                    {{membership.user.nameLastFirst}}
+                </span>
+                <i>{{membership.user.email}}</i>
+            </div>
+            <div *ngIf="memberships[(activePanel | async)]?.length == 0;" class="panel-block">
+                <i>No {{activePanel | async}} members</i>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>
+                        Roles allowed
+                        <br>
+                        (at event w/role)
+                    </th>
+                    <th>
+                        Attributes allowed
+                        <br>
+                        (always)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="is-selected">
+                    <td>Manage organization</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delete - only admin </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Manage memberships</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Manage permissions</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr class="is-selected">
+                    <td>Create event</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add/remove animals</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add/remove personnel (w/role)</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr class="is-selected">
+                    <td>Manage event</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>End any meetings (both person & animal)</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Change meeting personnel/animal</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mark attendee departed</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>See all attendees</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>See all personnel w/meetings</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Un-adopt</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>View waitlist</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add to waitlist</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>View animal statuses</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr class="is-selected">
+                    <td>Hold meetings (all permissions always granted)</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>View waitlist</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Start/end person meeting with self</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Start/end animal meeting with attendee in my meetings</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adopt an animal</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

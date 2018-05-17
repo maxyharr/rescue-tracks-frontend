@@ -7,10 +7,10 @@ import { Organization } from "../organization.model";
 import { OrganizationService } from "../organization.service";
 
 @Component({
-    selector: 'page-organization-join',
-    templateUrl: 'join.html',
+    selector: 'page-organization-create',
+    templateUrl: 'create.html',
 })
-export class JoinPage implements OnInit {
+export class CreatePage implements OnInit {
     public newOrganization: Organization;
 
     constructor(

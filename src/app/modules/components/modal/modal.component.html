@@ -1,4 +1,7 @@
-<div class="modal is-active">
+<div (click)="isActive = true;">
+    <ng-content select="[open]"></ng-content>
+</div>
+<div class="modal" [class.is-active]="isActive">
     <div class="modal-background" (click)="closeModal()"></div>
     <button class="modal-close" (click)="closeModal()" *ngIf="isGeneric"></button>
     <div class="modal-content" *ngIf="isGeneric">

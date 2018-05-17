@@ -8,8 +8,10 @@ import { EventModule } from "../../modules/event/event.module";
 import { OrganizationModule } from "./organization.module";
 
 import {
+  CreatePage,
   JoinPage,
   ManagePage,
+  ManageMembersPage,
 } from ".";
 
 import { OrganizationRoutes } from "./organization.routes";
@@ -17,8 +19,10 @@ import { OrganizationRoutes } from "./organization.routes";
 @NgModule({
   declarations: [
     // Pages
+    CreatePage,
     JoinPage,
     ManagePage,
+    ManageMembersPage,
   ],
   imports: [
     CommonModule,

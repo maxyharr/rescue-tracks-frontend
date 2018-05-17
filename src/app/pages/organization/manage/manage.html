@@ -80,15 +80,18 @@
         <div class="panel">
             <div class="panel-heading">
                 Members
-                <i *ngIf="(activePanel | async) == 'active'">
-                    Tap name for options
-                </i>
-                <i *ngIf="(activePanel | async) == 'pending'">
-                    Tap name to activate
-                </i>
-                <i *ngIf="(activePanel | async) == 'inactive'">
-                    Tap name to re-activate
-                </i>
+                <span class="right-side">
+                    <i *ngIf="(activePanel | async) == 'active'">
+                        Tap name for options
+                    </i>
+                    <i *ngIf="(activePanel | async) == 'pending'">
+                        Tap name to activate
+                    </i>
+                    <i *ngIf="(activePanel | async) == 'inactive'">
+                        Tap name to re-activate
+                    </i>
+                    <a routerLink="members">Manage</a>
+                </span>
             </div>
             <div class="panel-tabs">
                 <a (click)="activePanel.next('active')" [class.is-active]="(activePanel | async) == 'active'">

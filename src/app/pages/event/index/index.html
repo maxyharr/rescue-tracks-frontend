@@ -1,8 +1,13 @@
 <div class="events">
     <div *ngFor="let event of events | async" class="event">
-        <a [routerLink]="['', {outlets: {modal: ['join-event', event.id]}}]" class="button is-small">
-            {{ event | formatEventDate }}
-        </a>
+        <rt-modal>
+            <a class="button is-small" open>
+                {{ event | formatEventDate }}
+            </a>
+            <span modal-title>Hello world</span>
+            <div modal-body>Test body</div>
+            <div modal-footer>Test foot</div>
+        </rt-modal>
         <span>({{ event.animalCount}} animals)</span>
     </div>
 </div>

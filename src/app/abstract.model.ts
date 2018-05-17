@@ -1,11 +1,12 @@
 import * as _ from "lodash";
 
-const HAS_FIELD_REGEX = /^__has_(\w+)__$/;
+const NESTED_FIELD_REGEX = /^__(\w+)__$/;
 
 export class AbstractModel {
     public id: number;
     public createdAt: Date;
     public updatedAt: Date;
+
 
     constructor(params?: any) {
         Object.assign(this,
@@ -13,10 +14,12 @@ export class AbstractModel {
         );
 
         _.chain(params)
-         .pickBy((value, key) => !!HAS_FIELD_REGEX.test(key) && value)
+         .pickBy((value, key) => NESTED_FIELD_REGEX.test(key))
          .each((value, key) => {
-             let lookup = key.match(HAS_FIELD_REGEX)[1];
-             this[`_${lookup}`] = params[`__${lookup}__`];
+             const lookup = `_${key.match(NESTED_FIELD_REGEX)[1]}`;
+             if ((this as any).__lookupSetter__ && (this as any).__lookupSetter__(lookup)) {
+                 this[lookup] = value;
+             }
          }).value();
     }
 

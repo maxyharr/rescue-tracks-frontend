@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 
-import { Observable } from "rxjs/Observable";
-
-import { Animal } from "../../modules/api/animal";
 import { OnInit } from "@angular/core";
 
-import { APIService } from "../../modules/api/api.service";
+import { AuthenticationService } from "../../modules/authentication";
 
 @Component({
     selector: "page-home",
     templateUrl: "home.html"
 })
 export class HomePage implements OnInit {
-    constructor(private api: APIService) { }
+    constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if(!this.authenticationService.currentOrganization()) {
+            this.router.navigate(["organization", "join"]);
+        } else {
+            // should also check if there's a current event
+            this.router.navigate(["organization"]);
+        }
+    }
 
 }

@@ -10,16 +10,14 @@ import { EventModel } from "../../../modules/event/event.model";
 import { Membership } from "../../../modules/authentication/membership.model";
 import { Organization } from "../organization.model";
 
-import { EventService } from "../../../modules/event/event.service";
 import { OrganizationService } from "../organization.service";
 import { AuthenticationService } from "../../../modules/authentication/authentication.service";
 
 @Component({
-    selector: "page-organization-manage",
-    templateUrl: "manage.html",
-    styleUrls: ["manage.scss"],
+    selector: "page-organization-manage-members",
+    templateUrl: "manage-members.html",
 })
-export class ManagePage implements OnInit {
+export class ManageMembersPage implements OnInit {
     public organization: Organization;
 
     public events: EventModel[];
@@ -32,7 +30,6 @@ export class ManagePage implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-        private eventService: EventService,
         private organizationService: OrganizationService,
         private router: Router
     ) {
@@ -42,25 +39,6 @@ export class ManagePage implements OnInit {
     }
 
     ngOnInit() {
-        if(!this.authenticationService.currentOrganization()) {
-            this.router.navigateByUrl("join")
-        } else {
-            this.organizationService.getOrganization(this.authenticationService.currentOrganization().id)
-                .subscribe((organization) => {
-                    debugger;
-                    this.organization = new Organization(organization);
-
-                    this.organizationService
-                        .getOrganizationMemberStatusCounts(this.organization)
-                        .subscribe((memberCounts) => Object.assign(this.statusCounts, memberCounts));
-
-                    this.bindActivePanel();
-                });
-
-            this.eventService.getEvents().subscribe((events: EventModel[]) => {
-                this.events = events;
-            });
-        }
     }
 
     actionForMembership(membership: Membership): void {

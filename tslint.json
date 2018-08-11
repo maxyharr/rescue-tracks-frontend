@@ -1,37 +1,38 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ],
+  "defaultSeverity": "warning",
   "rules": {
-    "callable-types": true,
-    "class-name": true,
-    "comment-format": [
+    "align": [
       true,
-      "check-space"
+      "statements"
     ],
-    "curly": true,
-    "eofline": true,
-    "forin": true,
-    "import-blacklist": [true, "rxjs"],
-    "import-spacing": true,
+    "ban": [
+      true,
+      [ "_", "forEach" ],
+      [ "_", "each" ],
+      [ "$", "each" ],
+      [ "angular", "forEach" ]
+    ],
+    "class-name": true,
+    "forin": false,
     "indent": [
       true,
       "spaces"
     ],
-    "interface-over-type-literal": true,
+    "interface-name": false,
+    "jsdoc-format": true,
     "label-position": true,
-    "max-line-length": [
-      true,
-      140
-    ],
-    "member-access": false,
+    "label-undefined": true,
     "member-ordering": [
-      true,
+      false,
+      "public-before-private",
       "static-before-instance",
       "variables-before-functions"
     ],
+    "no-any": false,
     "no-arg": true,
     "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
     "no-console": [
       true,
       "debug",
@@ -42,39 +43,49 @@
     ],
     "no-construct": true,
     "no-debugger": true,
+    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-empty": false,
-    "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [true, "ignore-params"],
-    "no-shadowed-variable": true,
+    "no-inferrable-types": false,
+    "no-internal-module": false,
+    "no-invalid-this": [
+      true,
+      "check-function-in-method"
+      ],
+    "no-reference": true,
+    "no-require-imports": true,
+    "no-shadowed-variable": false,
     "no-string-literal": false,
-    "no-string-throw": true,
-    "no-switch-case-fall-through": true,
+    "no-switch-case-fall-through": false, //https://github.com/palantir/tslint/issues/1259
     "no-trailing-whitespace": true,
+    "no-unreachable": true,
     "no-unused-expression": true,
+    "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
-    "object-literal-sort-keys": false,
+    "no-var-requires": true,
     "one-line": [
       true,
       "check-open-brace",
       "check-catch",
-      "check-else",
+      "check-finally",
       "check-whitespace"
     ],
-    "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
     "radix": true,
-    "semicolon": [
-      "always"
-    ],
+    "semicolon": [true, "always"],
+    "switch-default": true,
     "triple-equals": [
       true,
-      "allow-null-check"
+      "allow-null-check",
+      "allow-undefined-check"
+    ],
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
     ],
     "typedef-whitespace": [
       true,
@@ -84,11 +95,16 @@
         "parameter": "nospace",
         "property-declaration": "nospace",
         "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
       }
     ],
-    "typeof-compare": true,
-    "unified-signatures": true,
-    "variable-name": false,
+    "use-isnan": true,
     "whitespace": [
       true,
       "check-branch",
@@ -96,21 +112,6 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ],
-
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
-    "use-life-cycle-interface": true,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true,
-    "no-access-missing-member": true,
-    "templates-use-public": true,
-    "invoke-injectable": true
+    ]
   }
 }

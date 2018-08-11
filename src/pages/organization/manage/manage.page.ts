@@ -6,13 +6,13 @@ import * as _ from "lodash";
 import { ReplaySubject } from "rxjs";
 
 import { Address } from "../address.model";
-import { EventModel } from "../../../modules/event/event.model";
-import { Membership } from "../../../modules/authentication/membership.model";
+import { EventModel } from "models/event.model";
+import { Membership } from "models/membership.model";
 import { Organization } from "../organization.model";
 
-import { EventService } from "../../../modules/event/event.service";
+import { EventService } from "services/event/event.service";
 import { OrganizationService } from "../organization.service";
-import { AuthenticationService } from "../../../modules/authentication/authentication.service";
+import { AuthenticationService } from "modules/authentication/authentication.service";
 
 @Component({
     selector: "page-organization-manage",

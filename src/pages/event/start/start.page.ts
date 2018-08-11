@@ -5,7 +5,7 @@ import {
     EventModel,
 
     EventService,
-} from "../../../modules";
+} from "modules";
 
 @Component({
     selector: 'page-event-start',

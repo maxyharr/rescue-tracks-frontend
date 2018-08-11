@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { Organization } from "./organization.model";
-import { Membership } from "../../modules/authentication/membership.model";
+import { Membership } from "models/membership.model";
 
 @Injectable()
 export class OrganizationService {

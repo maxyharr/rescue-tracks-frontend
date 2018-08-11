@@ -1,7 +1,7 @@
 import { Injectable, Inject  } from "@angular/core";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 
-import { BASE_RESCUE_TRACKS_URL } from "../../constants";
+import { BASE_RESCUE_TRACKS_URL } from "constants";
 
 import { Observable } from "rxjs";
 

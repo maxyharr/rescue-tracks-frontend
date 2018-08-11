@@ -1,10 +1,10 @@
-import { Injectable, Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
 
-import { Animal } from "./animal";
+import { Animal } from "models/animal.model";
 
 @Injectable()
 export class APIService {

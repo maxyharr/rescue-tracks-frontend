@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { Observable, Subscription } from "rxjs";
 
-import { Meeting, MeetingService } from "../../../modules";
+import { Meeting, MeetingService } from "modules";
 
 @Component({
     selector: 'page-meeting-end',

@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { OnInit } from "@angular/core";
 
-import { AuthenticationService } from "../../modules/authentication";
+import { AuthenticationService } from "modules/authentication";
 
 @Component({
     selector: "page-home",

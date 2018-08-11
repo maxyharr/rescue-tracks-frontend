@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from "moment";
 import "twix";
 
-import { EventModel } from "./event.model";
+import { EventModel } from "models/event.model";
 
 @Pipe({
     name: 'eventIsActive'

@@ -10,7 +10,7 @@ import {
     Meeting,
     EventService,
     MeetingService
-} from "../../../modules";
+} from "modules";
 
 @Component({
     selector: "page-meeting-show",

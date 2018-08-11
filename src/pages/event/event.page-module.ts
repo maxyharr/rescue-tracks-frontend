@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { ModalModule } from "../../modules/components/modal";
+import { ModalModule } from "modules/components/modal";
 
 import {
   EventRoutes,
@@ -16,7 +16,7 @@ import {
 
 import { JoinEventModalComponent } from "./modals/join.modal";
 
-import { EventModule } from "../../modules";
+import { EventModule } from "modules";
 
 @NgModule({
   declarations: [

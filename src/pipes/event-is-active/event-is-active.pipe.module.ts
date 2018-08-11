@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import { EventIsActivePipe } from 'modules/event/event-is-active.pipe';
+import { EventIsActivePipe } from './event-is-active.pipe';
 
 @NgModule({
   declarations: [EventIsActivePipe],

@@ -1,7 +1,10 @@
-import { AbstractModel } from "./abstract.model";
-import { EventModel } from "./event.model";
-import { User } from "./user.model";
-import { Address } from "./address.model";
+import * as _ from "lodash";
+
+import { AbstractModel } from "../../abstract.model";
+
+import { EventModel } from "models/event.model";
+import { User } from "models/user.model";
+import { Address } from "../../models/address.model";
 
 export class Organization extends AbstractModel {
     public name: string;

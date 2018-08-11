@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
 import {
     EventModel,
     EventService,
- } from "../../../modules";
+ } from "modules";
 
 @Component({
     selector: "page-event-index",

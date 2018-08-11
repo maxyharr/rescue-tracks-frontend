@@ -1,6 +1,6 @@
 import { AbstractModel } from "../../abstract.model";
 
-import { Organization } from "../../pages/organization/organization.model";
+import { Organization } from "pages/organization/organization.model";
 import { User } from "./user.model";
 
 export class Membership extends AbstractModel {

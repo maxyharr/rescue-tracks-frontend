@@ -1,4 +1,4 @@
-import { Animal } from "../api";
+import { Animal } from "modules/api";
 
 export class AnimalMeeting {
     public id: number;

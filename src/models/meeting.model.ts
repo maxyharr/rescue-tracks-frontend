@@ -1,7 +1,7 @@
 import * as _ from "lodash";
-import { Attendee, EventModel } from "../event";
-import { User } from "../authentication/user.model";
-import { Animal } from "../api";
+import { Attendee, EventModel } from "modules/event";
+import { User } from "./user.model";
+import { Animal } from "modules/api";
 import { AnimalMeeting } from "./animal-meeting.model";
 
 export class Meeting {

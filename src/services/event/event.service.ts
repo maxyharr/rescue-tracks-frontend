@@ -10,7 +10,7 @@ import "rxjs/add/operator/map";
 
 import * as _ from "lodash";
 
-import { SocketService } from "./socket.service";
+import { SocketService } from "../socket.service";
 
 import { EventModel } from "models/event.model";
 import { Attendee } from "models/attendee.model";

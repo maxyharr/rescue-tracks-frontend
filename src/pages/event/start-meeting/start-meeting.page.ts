@@ -9,7 +9,7 @@ import {
     Attendee,
 
     EventService,
-} from "../../../modules";
+} from "modules";
 
 @Component({
     selector: 'page-event-start-meeting',

@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { CreatePage } from "./create/create.page";
+import { CreatePage } from "./create.page";
 import { JoinPage } from "./join/join.page";
 import { ManagePage } from "./manage/manage.page";
 import { ManageMembersPage } from "./manage-members/manage-members.page";

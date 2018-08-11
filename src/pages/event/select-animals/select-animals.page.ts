@@ -10,7 +10,7 @@ import {
 
     APIService,
     EventService,
-} from "../../../modules";
+} from "modules";
 
 @Component({
     selector: 'page-event-select-animals',
